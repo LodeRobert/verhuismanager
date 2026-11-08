@@ -1,0 +1,16 @@
+services:
+  verhuismanager:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: verhuismanager-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATA_DIR=/app/data
+    volumes:
+      # Koppel de lokale map './data' aan '/app/data' in de container voor permanente opslag
+      - ./data:/app/data

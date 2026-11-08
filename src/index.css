@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --label-width: 89mm;
+  --label-height: 41mm;
+}
+
+code, pre, .font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Print optimizations specifically for Dymo & thermal label printers */
+@media print {
+  @page {
+    size: var(--label-width, 89mm) var(--label-height, 41mm);
+    margin: 0 !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: var(--label-width, 89mm) !important;
+    height: var(--label-height, 41mm) !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Completely eliminate the interactive web app, toasts, modals, and nav from print output */
+  #root, .no-print, nav, header, aside, .bottom-nav, button {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Only display the isolated print portal */
+  #dymo-print-portal {
+    display: block !important;
+    visibility: visible !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: var(--label-width, 89mm) !important;
+    background: #ffffff !important;
+  }
+
+  .dymo-label-page {
+    page-break-after: always;
+    break-after: page;
+    width: var(--label-width, 89mm) !important;
+    height: var(--label-height, 41mm) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+}
+
+@media screen {
+  #dymo-print-portal {
+    display: none !important;
+  }
+}

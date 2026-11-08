@@ -1,0 +1,6 @@
+{
+  "name": "VerhuisManager",
+  "description": "Mobielvriendelijke verhuisbeheer app met Dymo-labelprinter, QR-codes, camera scanning, hiërarchisch locatiebeheer en Docker support.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
